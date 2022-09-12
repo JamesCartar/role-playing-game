@@ -1,0 +1,199 @@
+@font-face 
+{ 
+font-family: "Lonney tune";  
+src: url("./fonts/Looney Tunes Tilt BT.ttf"); 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lonney tune', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* layout when the game end */
+
+.end-game {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fdd068;
+}
+
+.end-game .end-container {
+    padding: 0 .5em;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.end-game h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.end-game p {
+    font-size: 1.3rem;
+    margin: 0;
+}
+ 
+#reset-button {
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #000;
+    letter-spacing: 2px;
+    margin-top: 1em;
+    padding: .5em 1em;
+    background-color: #50b693;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (min-width: 650px) {
+    .end-game h1 {
+        font-size: 5rem;
+    }
+
+    .end-game p {
+        font-size: 2rem;
+    }
+
+    #reset-game {
+        font-size: 1.5rem;
+    } 
+}
+
+/* End of layout when the game end */
+
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h2 {
+    text-align: center;
+    margin-block: .5em;
+}
+
+/* layout when the game end */
+
+
+/* ============
+    layout
+   ============ */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 1em;
+}
+
+.hero-img,
+.duffy-img {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.card {
+    color: #e1e1e1;
+    max-width: 300px;
+    margin: .5em auto;
+    padding: .6em;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #404040;
+}
+
+.card-body {
+    background-color: #9f6539;
+    padding: .1em 0;
+    border-radius: 5px;
+}
+
+.card-body p {
+    text-transform: capitalize;
+    padding-left: .5em;
+}
+
+.card-footer {
+    background-color: #404040;
+    margin-top: .5em;
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-footer .dice,
+.card-footer .placeholder-dice {
+    font-size: 1.3rem;
+    color: #fff;
+    border: 1px solid rgb(112, 112, 112);
+    padding: .5em 1em;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 6px 2px rgba(100,100,100,0.2),
+    0px 0px 10px rgba(117,182,214,0.2);
+}
+
+.card-footer .placeholder-dice {
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+}
+
+/* button action */
+.action {
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+#attack-button {
+    font-family: inherit;
+    font-size: 1.2rem;
+    color: rgb(75, 75, 75);
+    padding: .5em 1.3em;
+    background-color: #fdd068;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+#attack-button:hover {
+    outline: none;
+    transform: scale(1.1);
+}
+
+
+/* ================
+    media queries
+   ================ */
+
+@media (min-width: 650px) {
+    .container {
+        margin-top: 2em;
+        display: flex;
+        gap: 10px;
+    }
+
+    .card {
+        width: 300px;
+    }
+}
