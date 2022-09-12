@@ -12,7 +12,6 @@ function attack() {
 
     if(captain.dead || duffy.dead) {
         endGame();
-        document.getElementById('reset-button').addEventListener('click', reset);
     }
 }
 
