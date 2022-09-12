@@ -3,49 +3,74 @@ import Character from './Character.js';
 
 document.getElementById('attack-button').addEventListener('click', attack);
 
-function attack() {
-    captain.getDiceHtml();
-    duffy.getDiceHtml();
-    captain.takeDamage(duffy.currentDiceScore);
-    duffy.takeDamage(captain.currentDiceScore);
-    rendertoDOM();
+let lonneyTuneArray = ['duck', 'bunny', 'mouse'];
+let isWaiting = false;
 
-    if(captain.dead || duffy.dead) {
-        endGame();
+function attack() {
+    if(!isWaiting) {
+        captain.setDiceHtml();
+        lonney.setDiceHtml();
+        captain.takeDamage(lonney.currentDiceScore);
+        lonney.takeDamage(captain.currentDiceScore);
+        rendertoDOM();
+
+        if(captain.dead) {
+            endGame();
+        } else if(lonney.dead) {
+            isWaiting = true;
+            if(lonneyTuneArray.length > 0) {
+                setTimeout(() => {
+                    lonney = getNewMonster();
+                    rendertoDOM();
+                    isWaiting = false;
+                }, 1000)
+            } else {
+                setTimeout(() => {
+                    endGame(); 
+                }, 1000); 
+            } 
+        }
     }
 }
 
-function reset() {
-    settingDefaultState(captain);
-    settingDefaultState(duffy);
+function getNewMonster() {
+    let nextMonster = data[lonneyTuneArray.shift()];
+    return nextMonster ? new Character(nextMonster) : {}
 }
 
-function settingDefaultState(character) {
-    character.health = 100;
-    character.setDicePlaceHoder();
-}
 
 function endGame() {
-    let message = duffy.health > 0 ? 'Duffy duck won 🐰🐇🥕' 
-    : captain.health > 0 ? 'Captain America won ⚒️👨‍🔬👨‍🔬' 
-    : 'No one wins ☮☮☮☮'
-    document.body.innerHTML =  `
-    <div class='end-game'>
-        <div class='container end-container'>
-            <h1>Game Over</h1>
-            <p>${message}</p>
-        </div>        
-    </div>
-    `
+    isWaiting = true;
+    let message = '';
+    if(lonney.health > 0) {
+        message = 'Lonney Tunes wins 🐰🐇🥕';
+    } else if(captain.health > 0 && lonneyTuneArray.length === 0) {
+        message = 'Captain America wins ⚒️👨‍🔬👨‍🔬';
+    } else {
+        message = 'No one wins ☮☮☮☮'
+    }
+
+
+    setTimeout(() => {
+        document.body.innerHTML =  `
+        <div class='end-game'>
+            <div class='container end-container'>
+                <h1>Game Over</h1>
+                <p>${message}</p>
+            </div>        
+        </div>
+        `       
+    }, 1500);
+
 }
 
 function rendertoDOM() {
     document.getElementById('hero').innerHTML = captain.getCharacterHtml();
-    document.getElementById('lonney').innerHTML = duffy.getCharacterHtml();
+    document.getElementById('lonney').innerHTML = lonney.getCharacterHtml();
 }
 
 
 
 const captain = new Character(data.hero);
-const duffy = new Character(data.lonney);
+let lonney = getNewMonster();
 rendertoDOM();

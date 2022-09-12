@@ -130,6 +130,21 @@ h2 {
     padding-left: .5em;
 }
 
+.card-body .health-bar {
+    border-radius: 5px;
+    height: 8px;
+}
+
+.health-bar .inner-health-bar {
+    height: 100%;
+    border-radius: 5px;
+    background-color: #50b693;
+}
+
+.health-bar .inner-health-bar.danger {
+    background-color: red;
+}
+
 .card-footer {
     background-color: #404040;
     margin-top: .5em;
